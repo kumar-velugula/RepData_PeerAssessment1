@@ -39,24 +39,12 @@ head(data)
 
 ## What is mean total number of steps taken per day?
 
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
 
 ### 1. Make a histogram of the total number of steps taken each day
 
 ```r
 ##using dplyr package, summarizing the dataframe by date and sum of steps
-
+##If the histogram doesn't show up here, please refer to the locaiton : figure/unnamed-chunk-3-1.png 
 dataHist <- data %>% group_by(date) %>% summarize(StepsTotalPerDay = sum(steps, na.rm=T))
 hist(dataHist$StepsTotalPerDay, 
      breaks=20,
@@ -110,6 +98,7 @@ summary(dataHist)
 data2 <- data %>% group_by(interval) %>% summarize(AverageStepsPerInterval = mean(steps, na.rm=T))
 
 ##plot average number of steps by the interval from above data2 using plot type 'l'
+##If the histogram doesn't show up here, please refer to the locaiton : figure/unnamed-chunk-5-1.png 
 with(data2, {
         plot(interval, 
              AverageStepsPerInterval, 
@@ -184,6 +173,7 @@ data3[is.na(data3$steps),2] <- data3[is.na(data3$steps),4]
 
 dataHist2 <- data3 %>% group_by(date) %>% summarize(StepsTotalPerDay2 = sum(steps, na.rm=T))
 ## generate histogram of the steps total per day
+##If the histogram doesn't show up here, please refer to the locaiton : figure/unnamed-chunk-10-1.png 
 hist(dataHist2$StepsTotalPerDay2, 
      breaks=20,
      xlab='Total number of steps after filling missing values',
@@ -284,6 +274,7 @@ str(data3)
 ```r
 library(lattice)
 ##uisng the lattice package and xyplot function to plot the steps and interval by the daycategory (weekday/weekend) in single column and 2 rows layout
+##If the histogram doesn't show up here, please refer to the locaiton : figure/unnamed-chunk-12-1.png 
 xyplot(AverageStepsPerInterval ~ interval | daycategory, 
        data= data3,
        type='l',
