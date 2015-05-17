@@ -1,7 +1,8 @@
 ---
 title: "Reproducible Research: Peer Assessment 1"
+Note: if you don't find the figures in the .rmd file, please refer to them in the folder called "figure"
 output: 
-  html_document:
+html_document:
     keep_md: true
 ---
 
@@ -44,7 +45,7 @@ head(data)
 
 ```r
 ##using dplyr package, summarizing the dataframe by date and sum of steps
-##If the histogram doesn't show up here, please refer to the locaiton : figure/unnamed-chunk-3-1.png 
+##If the histogram doesn't show up here, please click on link Figure1 or refer to the locaiton : [figure/unnamed-chunk-3-1.png]
 dataHist <- data %>% group_by(date) %>% summarize(StepsTotalPerDay = sum(steps, na.rm=T))
 hist(dataHist$StepsTotalPerDay, 
      breaks=20,
@@ -53,6 +54,8 @@ hist(dataHist$StepsTotalPerDay,
 ```
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+[Figure1: historgram of total number of steps each day](https://github.com/kumar-velugula/RepData_PeerAssessment1/blob/master/figure/unnamed-chunk-3-1.png) 
+
 
 ### 2. Calculate and report the mean and median total number of steps taken per day
 
@@ -98,7 +101,7 @@ summary(dataHist)
 data2 <- data %>% group_by(interval) %>% summarize(AverageStepsPerInterval = mean(steps, na.rm=T))
 
 ##plot average number of steps by the interval from above data2 using plot type 'l'
-##If the histogram doesn't show up here, please refer to the locaiton : figure/unnamed-chunk-5-1.png 
+##If the histogram doesn't show up here, please click on link Figure2 or  refer to the locaiton : figure/unnamed-chunk-5-1.png 
 with(data2, {
         plot(interval, 
              AverageStepsPerInterval, 
@@ -110,6 +113,7 @@ with(data2, {
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+[Figure2: Daily activity pattern](https://github.com/kumar-velugula/RepData_PeerAssessment1/blob/master/figure/unnamed-chunk-5-1.png) 
 
 ### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -168,12 +172,14 @@ data3[is.na(data3$steps),2] <- data3[is.na(data3$steps),4]
 
 ### 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
+[Figure3: Histogram of steps per day after filling missing values](https://github.com/kumar-velugula/RepData_PeerAssessment1/blob/master/figure/unnamed-chunk-10-1.png) 
+
 ```r
 ##using dplyr package summarizing the data3 with filled in missing values by date and sum of steps
 
 dataHist2 <- data3 %>% group_by(date) %>% summarize(StepsTotalPerDay2 = sum(steps, na.rm=T))
 ## generate histogram of the steps total per day
-##If the histogram doesn't show up here, please refer to the locaiton : figure/unnamed-chunk-10-1.png 
+##If the histogram doesn't show up here, please click on link Figure3 or  refer to the locaiton : figure/unnamed-chunk-10-1.png 
 hist(dataHist2$StepsTotalPerDay2, 
      breaks=20,
      xlab='Total number of steps after filling missing values',
@@ -214,6 +220,8 @@ summary(dataHist2)
 ##  2012-10-06: 1   Max.   :21194    
 ##  (Other)   :55
 ```
+
+
 #### After filling the missing values with that of mean of the steps for that interval across all days, median and mean became same. Median moved closer to the Mean.
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -274,13 +282,15 @@ str(data3)
 ```r
 library(lattice)
 ##uisng the lattice package and xyplot function to plot the steps and interval by the daycategory (weekday/weekend) in single column and 2 rows layout
-##If the histogram doesn't show up here, please refer to the locaiton : figure/unnamed-chunk-12-1.png 
+##If the histogram doesn't show up here, please click on link Figure4 or  refer to the locaiton : figure/unnamed-chunk-12-1.png 
 xyplot(AverageStepsPerInterval ~ interval | daycategory, 
        data= data3,
        type='l',
        xlab='5-minute interval',
        ylab='Average number of steps across all days',
+       main = 'Panel plot with average number of steps taken across all days by the day category weekday/weekend',
        layout=c(1,2))
 ```
 
 ![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
+[Figure4: Panel plot with average number of steps taken across all days by the day category weekday/weekend](https://github.com/kumar-velugula/RepData_PeerAssessment1/blob/master/figure/unnamed-chunk-5-1.png) 
