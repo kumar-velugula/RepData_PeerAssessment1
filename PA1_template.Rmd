@@ -26,7 +26,10 @@ library(dplyr)
 ##using dplyr package, summarizing the dataframe by date and sum of steps
 
 dataHist <- data %>% group_by(date) %>% summarize(StepsTotalPerDay = sum(steps, na.rm=T))
-hist(dataHist$StepsTotalPerDay, main="Total number of steps taken each day")
+hist(dataHist$StepsTotalPerDay, 
+     breaks=20,
+     xlab='Total number of steps',
+     main="Total number of steps taken each day")
 ```
 
 ### 2. Calculate and report the mean and median total number of steps taken per day
@@ -97,7 +100,10 @@ data3[is.na(data3$steps),2] <- data3[is.na(data3$steps),4]
 
 dataHist2 <- data3 %>% group_by(date) %>% summarize(StepsTotalPerDay2 = sum(steps, na.rm=T))
 ## generate histogram of the steps total per day
-hist(dataHist2$StepsTotalPerDay2, main="Total number of steps taken each day after filling missing values")
+hist(dataHist2$StepsTotalPerDay2, 
+     breaks=20,
+     xlab='Total number of steps after filling missing values',
+     main="Total number of steps taken each day after filling missing values")
 
 ##mean of the steps from above data set
 mean(dataHist2$StepsTotalPerDay2)

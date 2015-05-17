@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 ## Loading and preprocessing the data
 
@@ -53,10 +58,13 @@ head(data)
 ##using dplyr package, summarizing the dataframe by date and sum of steps
 
 dataHist <- data %>% group_by(date) %>% summarize(StepsTotalPerDay = sum(steps, na.rm=T))
-hist(dataHist$StepsTotalPerDay, main="Total number of steps taken each day")
+hist(dataHist$StepsTotalPerDay, 
+     breaks=20,
+     xlab='Total number of steps',
+     main="Total number of steps taken each day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 ### 2. Calculate and report the mean and median total number of steps taken per day
 
@@ -112,7 +120,7 @@ with(data2, {
         )
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
 ### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -176,10 +184,13 @@ data3[is.na(data3$steps),2] <- data3[is.na(data3$steps),4]
 
 dataHist2 <- data3 %>% group_by(date) %>% summarize(StepsTotalPerDay2 = sum(steps, na.rm=T))
 ## generate histogram of the steps total per day
-hist(dataHist2$StepsTotalPerDay2, main="Total number of steps taken each day after filling missing values")
+hist(dataHist2$StepsTotalPerDay2, 
+     breaks=20,
+     xlab='Total number of steps after filling missing values',
+     main="Total number of steps taken each day after filling missing values")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
 
 ```r
 ##mean of the steps from above data set
@@ -281,4 +292,4 @@ xyplot(AverageStepsPerInterval ~ interval | daycategory,
        layout=c(1,2))
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
