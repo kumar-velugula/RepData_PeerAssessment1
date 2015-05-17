@@ -293,4 +293,4 @@ xyplot(AverageStepsPerInterval ~ interval | daycategory,
 ```
 
 ![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
-[Figure4: Panel plot with average number of steps taken across all days by the day category weekday/weekend](https://github.com/kumar-velugula/RepData_PeerAssessment1/blob/master/figure/unnamed-chunk-5-1.png) 
+[Figure4: Panel plot with average number of steps taken across all days by the day category weekday/weekend](https://github.com/kumar-velugula/RepData_PeerAssessment1/blob/master/figure/unnamed-chunk-12-1.png) 
